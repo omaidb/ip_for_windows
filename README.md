@@ -19,6 +19,7 @@ Linux下的`ip`命令显示本机ip地址非常好用,Windows下要输入很长�
 ip
 # 会显示本机内网ip和公网ip地址
 ```
+![image](https://user-images.githubusercontent.com/18365223/118925359-306fac00-b971-11eb-84d2-e24e5e6028e4.png)
 
 
 
