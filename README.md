@@ -13,7 +13,7 @@ python脚本编译成的exe文件好大啊!这个编译完有6.2MB
 
 ### 安装方法
 
-将pip.exe 复制到`C:\Windows\system32\`目录下
+将ip.exe 复制到`C:\Windows\system32\`目录下
 
 #### 查看本机ip
 
