@@ -24,8 +24,7 @@ def showip():
         ip = sys.argv[1]
     except:
         # 如果参数为空,ip参数就为空
-        ip = None
-        查看本地公网ip()
+        view_local_public_network_ip()
         ipconfig()
 
     else:
@@ -33,10 +32,10 @@ def showip():
         if ip == 'a':
             ipconfig()
         elif ip[0].isdigit() or ip[1].isalpha():
-            查询ip归属地(ip)
+            query_ip_attribution(ip)
 
 
-def 查看本地公网ip():
+def view_local_public_network_ip():
     """
     查看本地公网ip
     :return:打印json格式的ip信息
@@ -51,7 +50,7 @@ def 查看本地公网ip():
         pprint(response.json())
 
 
-def 查询ip归属地(ip):
+def query_ip_attribution(ip):
     """
     查询ip归属地
     :param ip:传入ip或域名
