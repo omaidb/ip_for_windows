@@ -13,10 +13,9 @@ from pprint import pprint
 import requests
 
 
-def showip(ip=None):
+def showip():
     """
     查看本机内网和外网ip地址
-    :param ip:传入ip地址,查本机内网地址可不传
     :return: 以json格式返回ip地址信息
     """
 
@@ -24,33 +23,60 @@ def showip(ip=None):
         # ip作为命令行第一个参数传进来
         ip = sys.argv[1]
     except:
+        # 如果参数为空,ip参数就为空
         ip = None
-        # 如果ip为真,就调用ip查询接口查询ip
-    if ip:
-        try:
-            response = requests.get(
-                f'http://ip-api.com/json/{ip}?lang=zh-CN', timeout=7)
+        查看本地公网ip()
+        ipconfig()
 
-            pprint(response.json())
-        except Exception as e:
-            print(e)
-    # 如果不为真,就调用接口查询本机外网ip
     else:
-        try:
-            response = requests.get(
-                'https://myip.ipip.net/', timeout=2)
-            print(response.text, end='')
-        except:
-            response = requests.get(
-                f'http://ip-api.com/json/?lang=zh-CN', timeout=7)
-            pprint(response.json())
-        # 执行本机自带的ipconfig命令显示本机内网ip
-        ipconfig = os.popen('ipconfig')
-        ipconfig = ipconfig.buffer.read().decode(encoding='gbk').splitlines()
-        # 格式优化
-        for i in ipconfig:
-            if i:
-                print(i.replace('. ', ''))
+        # 如果ip参数为a,就执行
+        if ip == 'a':
+            ipconfig()
+        elif ip[0].isdigit() or ip[1].isalpha():
+            查询ip归属地(ip)
+
+
+def 查看本地公网ip():
+    """
+    查看本地公网ip
+    :return:打印json格式的ip信息
+    """
+    try:
+        response = requests.get(
+            'https://myip.ipip.net/', timeout=2)
+        print(response.text, end='')
+    except:
+        response = requests.get(
+            f'http://ip-api.com/json/?lang=zh-CN', timeout=7)
+        pprint(response.json())
+
+
+def 查询ip归属地(ip):
+    """
+    查询ip归属地
+    :param ip:传入ip或域名
+    :return: 打印json格式的ip信息
+    """
+    try:
+        response = requests.get(
+            f'http://ip-api.com/json/{ip}?lang=zh-CN', timeout=7)
+
+        pprint(response.json())
+    except Exception as e:
+        print(e)
+
+
+def ipconfig():
+    """
+    显示本地ip配置信息
+    :return:
+    """
+    exec_ipconfig = os.popen('ipconfig')
+    exec_ipconfig = exec_ipconfig.buffer.read().decode(encoding='gbk').splitlines()
+    # 格式优化
+    for i in exec_ipconfig:
+        if i:
+            print(i.replace('. ', ''))
 
 
 if __name__ == '__main__':
