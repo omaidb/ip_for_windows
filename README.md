@@ -1,3 +1,5 @@
+0.2版本拆分了函数,响应速度更快;
+增加了ip a功能,用起来更像原生的Linux的ip a命令
 ip_for _windows
 
 Linux下的`ip`命令显示本机ip地址非常好用,Windows下要输入很长的`ipconfig`
