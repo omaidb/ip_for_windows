@@ -23,14 +23,15 @@ def showip():
         # ip作为命令行第一个参数传进来
         ip = sys.argv[1]
     except:
-        # 如果参数为空,ip参数就为空
+        # 如果参数为空,调用接口查询本地公网ip,并显示本地ip配置信息
         view_local_public_network_ip()
         ipconfig()
 
     else:
-        # 如果ip参数为a,就执行
+        # 如果ip参数为a,就执行ipconfig /all
         if ip == 'a':
             ipconfig()
+        # 如果传参的第一位书数字,或第二位是字母,就调用接口查询ip或域名
         elif ip[0].isdigit() or ip[1].isalpha():
             query_ip_attribution(ip)
 
@@ -70,7 +71,7 @@ def ipconfig():
     显示本地ip配置信息
     :return:
     """
-    exec_ipconfig = os.popen('ipconfig')
+    exec_ipconfig = os.popen('ipconfig /all')
     exec_ipconfig = exec_ipconfig.buffer.read().decode(encoding='gbk').splitlines()
     # 格式优化
     for i in exec_ipconfig:
