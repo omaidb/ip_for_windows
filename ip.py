@@ -24,7 +24,7 @@ def showip():
         ip = sys.argv[1]
     except:
         # 如果参数为空,调用接口查询本地公网ip,并显示本地ip配置信息
-        view_local_public_network_ip()
+        view_public_network_ip()
         ipconfig()
 
     else:
@@ -36,7 +36,7 @@ def showip():
             query_ip_attribution(ip)
 
 
-def view_local_public_network_ip():
+def view_public_network_ip():
     """
     查看本地公网ip
     :return:打印json格式的ip信息
